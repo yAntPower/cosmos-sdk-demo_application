@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// 习惯将自有类型定义在types中
 type Whois struct {
 	Value string         `json:"value"`
 	Owner sdk.AccAddress `json:"owner"`

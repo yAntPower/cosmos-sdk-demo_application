@@ -8,7 +8,7 @@ import (
 )
 
 type Keeper struct {
-	coinKeeper bank.Keeper  //用于调用bank模块的方法
+	coinKeeper bank.Keeper  //用于调用bank模块的方法（对帐户的操作和转账）
 	storeKey   sdk.StoreKey //持久化存储用到的Key值
 	cdc        *codec.Codec //用来做Amino编码
 }
@@ -24,7 +24,7 @@ func (k Keeper) SetWhois(ctx sdk.Context, name string, whois Whois) {
 	if whois.Owner.Empty() {
 		return
 	}
-	store := ctx.KVStore(k.storeKey)
+	store := ctx.KVStore(k.storeKey) //通过key访问存储
 	store.Set([]byte(name), k.cdc.MustMarshalBinaryBare(whois))
 }
 

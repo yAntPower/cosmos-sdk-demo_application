@@ -7,12 +7,14 @@ import (
 	"strings"
 )
 
+// 定义用户可以对哪些状态进行查询
 const (
 	QueryResolve = "resolve"
 	QueryWhois   = "whois"
 	QueryNames   = "names"
 )
 
+// 创建本模块（查询功能）的消息过滤器（子路由）
 func NewQuerier(keeper Keeper) sdk.Querier {
 	return func(ctx sdk.Context, path []string, req abci.RequestQuery) (res []byte, err sdk.Error) {
 		switch path[0] {
